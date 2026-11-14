@@ -1,0 +1,21 @@
+@if (tasks.length === 0) {
+  <p class="empty">Aucune tâche pour l'instant</p>
+} @else {
+  <ul>
+    @for (task of tasks; track task.id) {
+      <li>
+        <span [style.color]="task.title | titleColor">
+          {{ task.title | uppercase }}
+        </span>
+
+        <span>
+          {{ task.dueDate | date:'dd/MM/yyyy' }}
+        </span>
+
+        <button (click)="deleteTask(task.id)">
+          Supprimer
+        </button>
+      </li>
+    }
+  </ul>
+}

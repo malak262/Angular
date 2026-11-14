@@ -1,0 +1,28 @@
+ul {
+  list-style: none;
+  padding: 15px;
+  background: #f3e8ff;
+  border-radius: 10px;
+}
+
+li {
+  background: white;
+  padding: 12px;
+  margin-bottom: 8px;
+  border-radius: 8px;
+}
+
+.empty {
+  text-align: center;
+  font-style: italic;
+  color: gray;
+}
+
+button {
+  padding: 10px 20px;
+  background: #a020f0;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
