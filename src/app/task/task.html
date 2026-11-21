@@ -1,21 +1,57 @@
-@if (tasks.length === 0) {
-  <p class="empty">Aucune tâche pour l'instant</p>
-} @else {
-  <ul>
-    @for (task of tasks; track task.id) {
-      <li>
-        <span [style.color]="task.title | titleColor">
-          {{ task.title | uppercase }}
-        </span>
+<h2>TaskFlow</h2>
 
-        <span>
-          {{ task.dueDate | date:'dd/MM/yyyy' }}
-        </span>
+<h3>Ajouter une tâche</h3>
 
-        <button (click)="deleteTask(task.id)">
-          Supprimer
-        </button>
-      </li>
-    }
-  </ul>
+<input
+  type="text"
+  placeholder="Nouvelle tâche"
+  [value]="newTask()"
+  (input)="newTask.set($any($event.target).value)"
+/>
+
+<button (click)="addTask()">Ajouter</button>
+
+<button (click)="emptyTasks()">
+  Vider la liste
+</button>
+
+<p>
+  Tâches restantes : {{ availableTasks().length }}
+</p>
+
+@if (emptyStock()) {
+  <p>Aucune tâche disponible</p>
 }
+
+<p>
+  {{ all() }} tâches au total
+</p>
+
+<ul>
+  @for (task of tasks(); track task.id) {
+    <li>
+
+      <input
+        type="checkbox"
+        [checked]="task.completed"
+        (change)="toggleTask(task.id)"
+      />
+
+      <span
+        [style.color]="task.title | titleColor"
+        [style.text-decoration]="task.completed ? 'line-through' : 'none'"
+      >
+        {{ task.title | uppercase }}
+      </span>
+
+      <span>
+        {{ task.dueDate | date:'dd/MM/yyyy' }}
+      </span>
+
+      <button (click)="deleteTask(task.id)">
+        Supprimer
+      </button>
+
+    </li>
+  }
+</ul>

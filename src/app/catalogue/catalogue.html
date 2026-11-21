@@ -1,0 +1,18 @@
+<h2>Catalogue des produits</h2>
+
+@for (produit of produits(); track produit.id) {
+  <app-produit-card
+    [produit]="produit"
+    (ajoute)="ajouterProduit($event)"
+  />
+}
+
+<h2>Mon panier</h2>
+
+<p>Nombre d'articles : {{ panier.nombre() }}</p>
+
+<p>Total : {{ panier.total() }} DH</p>
+
+<button (click)="panier.vider()">
+  Vider le panier
+</button>
